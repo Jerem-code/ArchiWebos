@@ -31,10 +31,39 @@ function displayWorks(works) {
   });
 }
 
+// Création des catégories uniques pour les filtres
+function createFilters(works) {
+  const portfolioNav = document.querySelector("#portfolio nav");
+  portfolioNav.innerHTML = ""; // On vide la navigation existante
+
+  // Création du bouton "Tous"
+  const btnAll = document.createElement("button");
+  btnAll.textContent = "Tous";
+  btnAll.addEventListener("click", () => displayWorks(works));
+  portfolioNav.appendChild(btnAll);
+
+  // Création d'un Set pour obtenir les catégories uniques
+  const categories = [...new Set(works.map((work) => work.category.name))];
+
+  // Création des boutons pour chaque catégorie
+  categories.forEach((category) => {
+    const btn = document.createElement("button");
+    btn.textContent = category;
+    btn.addEventListener("click", () => {
+      const filteredWorks = works.filter(
+        (work) => work.category.name === category
+      );
+      displayWorks(filteredWorks);
+    });
+    portfolioNav.appendChild(btn);
+  });
+}
+
 // Initialisation immédiate de la galerie
 (async function initGallery() {
   const works = await fetchWorks();
   if (works) {
     displayWorks(works);
+    createFilters(works);
   }
 })();
