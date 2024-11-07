@@ -69,6 +69,14 @@ async function displayModalGallery() {
 async function deleteWork(id) {
   const token = localStorage.getItem("token");
 
+  // Ajout de la confirmation
+  const confirmation = confirm(
+    "Êtes-vous sûr de vouloir supprimer ce travail ?"
+  );
+  if (!confirmation) {
+    return; // Si l'utilisateur annule, on arrête la fonction
+  }
+
   try {
     const response = await fetch(`http://localhost:5678/api/works/${id}`, {
       method: "DELETE",
@@ -78,7 +86,6 @@ async function deleteWork(id) {
     });
 
     if (response.ok) {
-      // Supprimer l'élément du DOM dans la modale et la galerie principale
       const modalFigure = document.querySelector(
         `.modal-gallery figure[data-id="${id}"]`
       );

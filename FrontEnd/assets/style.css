@@ -235,6 +235,11 @@ li:hover {
   color: white;
   background-color: #1d6154;
 }
+
+#portfolio nav button.active {
+  color: white;
+  background-color: #1d6154;
+}
 /* Fin du style pour la navigation des filtres */
 
 .gallery {

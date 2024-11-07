@@ -35,12 +35,22 @@ function displayWorks(works) {
 // Création des catégories uniques pour les filtres
 function createFilters(works) {
   const portfolioNav = document.querySelector("#portfolio nav");
-  portfolioNav.innerHTML = ""; // On vide la navigation existante
+  portfolioNav.innerHTML = "";
+
+  // Vérifier si l'utilisateur est connecté
+  const token = localStorage.getItem("token");
+  if (token) {
+    return;
+  }
 
   // Création du bouton "Tous"
   const btnAll = document.createElement("button");
   btnAll.textContent = "Tous";
-  btnAll.addEventListener("click", () => displayWorks(works));
+  btnAll.classList.add("active"); // Le bouton "Tous" est actif par défaut
+  btnAll.addEventListener("click", () => {
+    setActiveFilter(btnAll);
+    displayWorks(works);
+  });
   portfolioNav.appendChild(btnAll);
 
   // Création d'un Set pour obtenir les catégories uniques
@@ -51,6 +61,7 @@ function createFilters(works) {
     const btn = document.createElement("button");
     btn.textContent = category;
     btn.addEventListener("click", () => {
+      setActiveFilter(btn);
       const filteredWorks = works.filter(
         (work) => work.category.name === category
       );
@@ -58,6 +69,16 @@ function createFilters(works) {
     });
     portfolioNav.appendChild(btn);
   });
+}
+
+// Fonction pour gérer l'état actif des filtres
+function setActiveFilter(clickedButton) {
+  // Retirer la classe active de tous les boutons
+  const buttons = document.querySelectorAll("#portfolio nav button");
+  buttons.forEach((button) => button.classList.remove("active"));
+
+  // Ajouter la classe active au bouton cliqué
+  clickedButton.classList.add("active");
 }
 
 // Initialisation immédiate de la galerie
