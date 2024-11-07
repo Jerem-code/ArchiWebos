@@ -704,3 +704,10 @@ hr {
 input[type="file"] {
   display: none;
 }
+
+.add-work-form hr {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #b3b3b3;
+  width: 100%;
+}

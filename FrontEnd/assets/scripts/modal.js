@@ -138,6 +138,21 @@ async function initAddWorkForm() {
     }
   });
 
+  // Fonction pour vérifier si le formulaire est valide
+  function checkFormValidity() {
+    const isValid =
+      imageInput.files.length > 0 &&
+      titleInput.value.trim() !== "" &&
+      categorySelect.value !== "";
+
+    validateBtn.classList.toggle("active", isValid);
+  }
+
+  // Ajouter les écouteurs d'événements pour chaque champ
+  imageInput.addEventListener("change", checkFormValidity);
+  titleInput.addEventListener("input", checkFormValidity);
+  categorySelect.addEventListener("change", checkFormValidity);
+
   // Validation du formulaire
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -162,8 +177,8 @@ async function initAddWorkForm() {
         const works = await fetchWorks();
         displayWorks(works);
         displayModalGallery();
-        // Réinitialiser le formulaire
-        form.reset();
+        // Réinitialiser le formulaire et la prévisualisation
+        resetForm();
         // Revenir à la galerie
         showGalleryView();
       } else {
@@ -174,6 +189,24 @@ async function initAddWorkForm() {
       alert("Une erreur est survenue lors de l'ajout du projet");
     }
   });
+}
+
+function resetForm() {
+  const form = document.querySelector(".add-work-form");
+  const uploadContainer = document.querySelector(".image-upload-container");
+
+  // Réinitialiser le formulaire
+  form.reset();
+
+  // Réinitialiser le conteneur d'upload
+  uploadContainer.innerHTML = `
+    <div class="upload-default">
+      <i class="fa-regular fa-image"></i>
+      <label for="image" class="custom-file-upload">+ Ajouter photo</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+      <p>jpg, png : 4mo max</p>
+    </div>
+  `;
 }
 
 // Fonctions pour gérer la navigation entre les vues
