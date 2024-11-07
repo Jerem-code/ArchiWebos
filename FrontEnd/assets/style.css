@@ -410,3 +410,78 @@ body.edit-mode header {
   color: black;
   margin-right: 2px;
 }
+
+/* Styles pour la modal */
+.modal {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-wrapper {
+  background-color: white;
+  width: 630px;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal h3 {
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 26px;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.add-photo-btn,
+.delete-gallery-btn {
+  display: block;
+  width: 237px;
+  height: 36px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 60px;
+  font-family: "Syne";
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-photo-btn {
+  background-color: #1d6154;
+  color: white;
+}
+
+.delete-gallery-btn {
+  background: none;
+  color: #d65353;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #b3b3b3;
+}
