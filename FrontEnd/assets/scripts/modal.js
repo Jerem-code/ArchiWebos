@@ -3,8 +3,14 @@ function initModal() {
   const editButton = document.querySelector(".edit-link");
   const closeButton = document.querySelector(".close-modal");
 
+  // Vérifier si l'utilisateur est connecté (présence du token)
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return; // Sortir de la fonction si non connecté (mode hors ligne)
+  }
+
   // Ouvrir la modale
-  editButton.addEventListener("click", (e) => {
+  editButton?.addEventListener("click", (e) => {
     e.preventDefault();
     modal.style.display = "flex";
     modal.setAttribute("aria-hidden", "false");
@@ -12,13 +18,13 @@ function initModal() {
   });
 
   // Fermer la modale avec le bouton
-  closeButton.addEventListener("click", () => {
+  closeButton?.addEventListener("click", () => {
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true");
   });
 
   // Fermer la modale en cliquant en dehors
-  modal.addEventListener("click", (e) => {
+  modal?.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
       modal.setAttribute("aria-hidden", "true");
@@ -28,8 +34,8 @@ function initModal() {
   const addPhotoBtn = document.querySelector(".add-photo-btn");
   const backButton = document.querySelector(".back-button");
 
-  addPhotoBtn.addEventListener("click", showFormView);
-  backButton.addEventListener("click", showGalleryView);
+  addPhotoBtn?.addEventListener("click", showFormView);
+  backButton?.addEventListener("click", showGalleryView);
 
   initAddWorkForm();
 }
@@ -227,5 +233,5 @@ function showFormView() {
   document.querySelector(".modal-form-container").style.display = "block";
 }
 
-// Initialiser la modale une fois que le DOM est chargé
+// Initialiser la modale
 initModal();
