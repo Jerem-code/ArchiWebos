@@ -17,6 +17,7 @@ function displayWorks(works) {
 
   works.forEach((work) => {
     const figure = document.createElement("figure");
+    figure.dataset.id = work.id; // Ajout de l'ID comme attribut data
 
     const img = document.createElement("img");
     img.src = work.imageUrl;

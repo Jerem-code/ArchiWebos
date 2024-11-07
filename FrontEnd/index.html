@@ -98,12 +98,50 @@
         <button class="close-modal">
           <i class="fa-solid fa-xmark"></i>
         </button>
-        <h3 id="modalTitle">Galerie photo</h3>
-        <div class="modal-gallery">
-          <!-- La galerie sera générée ici par JavaScript -->
+
+        <!-- Premier état : Galerie -->
+        <div class="modal-gallery-container">
+          <h3>Galerie photo</h3>
+          <div class="modal-gallery"></div>
+          <hr />
+          <button class="add-photo-btn">Ajouter une photo</button>
         </div>
-        <hr />
-        <button class="add-photo-btn">Ajouter une photo</button>
+
+        <!-- Deuxième état : Formulaire -->
+        <div class="modal-form-container" style="display: none">
+          <button class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <h3>Ajout photo</h3>
+          <form class="add-work-form">
+            <div class="image-upload-container">
+              <div class="preview-container" style="display: none">
+                <img id="image-preview" src="" alt="Aperçu" />
+              </div>
+              <div class="upload-default">
+                <i class="fa-regular fa-image"></i>
+                <label for="image" class="custom-file-upload"
+                  >+ Ajouter photo</label
+                >
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  required
+                />
+                <p>jpg, png : 4mo max</p>
+              </div>
+            </div>
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" required />
+            <label for="category">Catégorie</label>
+            <select name="category" id="category" required>
+              <option value="">Sélectionner une catégorie</option>
+            </select>
+            <button type="submit" class="validate-btn">Valider</button>
+          </form>
+        </div>
       </div>
     </div>
   </body>
