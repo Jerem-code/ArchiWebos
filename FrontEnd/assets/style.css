@@ -138,11 +138,20 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fffef8;
 }
+
+main {
+  flex: 1;
+}
+
 header {
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+  padding: 50px 0;
 }
 section {
   margin: 50px 0;
@@ -183,6 +192,7 @@ nav li {
 nav li a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 li:hover {
@@ -309,7 +319,9 @@ input[type="submit"] {
 footer nav ul {
   display: flex;
   justify-content: flex-end;
-  margin: 2em;
+  margin: 0;
+  padding: 0 20px;
+  cursor: pointer;
 }
 
 /* Ajout du style pour le lien actif dans la navigation */
@@ -376,8 +388,13 @@ nav li a.active {
 }
 
 footer {
-  font-size: 12px;
+  background-color: white;
+  padding: 20px 0;
+  width: 100vw;
   margin-top: auto;
+  font-size: 12px;
+  margin-left: calc(-50vw + 50%); /* Centrage du footer */
+  position: relative;
 }
 
 .edit-banner {
